@@ -155,11 +155,7 @@ table.list td {
 
 		<div class="row">
 			<form action="${pageContext.request.contextPath}/user/delete.do" method="GET" class="form-signin">
-			
-			
-
-
-				<input type="password" class="form-control" name="userId" placeholder="비밀번호" required />
+				<input type="password" class="form-control" name="userPw" placeholder="비밀번호" required />
 				<div>
 					<!-- <a href="${pageContext.request.contextPath}/user/delete.do?userId=${user.userId}">탈퇴</a> -->
 

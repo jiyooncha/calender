@@ -18,14 +18,10 @@ public class UserController {
 
 	@RequestMapping(value = "login.do", method = RequestMethod.POST)
 	public String login(Model model, HttpSession session, String userId, String userPw) {
-
 		User user = new User();
-
 		user.setUserId(userId);
 		user.setUserPw(userPw);
-
 		user = service.login(user);
-
 		try {
 			if (!user.getUserName().equals("null")) {
 				session.setAttribute("id", user.getUserId());
@@ -42,26 +38,26 @@ public class UserController {
 	@RequestMapping(value = "modify.do", method = RequestMethod.POST)
 	public void modify(Model model, HttpSession session, String userId, String userPw) {
 	
-		service.delete(userId);
-		
+//		service.delete(userId);
+//		
 		return;
 	}
 	
 	@RequestMapping(value = "modify.do", method = RequestMethod.GET)
 	public void modify(Model model, HttpSession session, String userId) {
-		service.delete(userId);
+//		service.delete(userId);
 		return;
 	}
 	
 	@RequestMapping(value = "delete.do", method = RequestMethod.GET)
-	public void delete(Model model, HttpSession session, String userId) {
-		session.getAttribute("id");	// id
+	public void delete(Model model, HttpSession session, String userPw) {
+		String userId = (String) session.getAttribute("id");	// id
 		
 //		String id = (String) session.getAttribute("id");
 //		System.out.println("id " + session.getAttribute("id"));
 		
-		System.out.println("userId " + userId);
-		service.delete(userId);
+		System.out.println("userPw " + userPw);
+		service.delete(userId, userPw);
 		
 		return;
 	}

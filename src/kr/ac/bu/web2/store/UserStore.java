@@ -13,6 +13,6 @@ public interface UserStore {
 	List<Plan> findPlan(String userId);
 	List<Group> findGroup(String userId);
 	void modify(User user);
-	void delete(String userId);
+	void delete(String userPw, String userId);
 		
 }

@@ -100,7 +100,7 @@ public class UserStoreLogic implements UserStore {
 		try {
 			if (rs.next()) {
 				conn = connectionFactory.createConnection();
-				psmt = conn.prepareStatement("INSERT INTO usertbl(userId, userPw, userName, userPhone) VALUES (?, ?, ?, ?)");
+				psmt = conn.prepareStatement("UPDATE ");
 				psmt.setString(1, user.getUserId());
 				psmt.setString(2, user.getUserPw());
 				psmt.setString(3, user.getUserName());
@@ -122,10 +122,8 @@ public class UserStoreLogic implements UserStore {
 	}
 
 	@Override
-	public void delete(String userId) {
-		System.out.println("store e namedelete " + userId);
-
-		String sql = "SELECT userId FROM usertbl WHERE userId = ?";
+	public void delete(String userId, String userPw) {
+		String sql = "SELECT userId FROM usertbl WHERE userId = ? and userPw = ?";
 
 		Connection conn = null;
 		PreparedStatement psmt = null;
@@ -135,9 +133,10 @@ public class UserStoreLogic implements UserStore {
 			conn = connectionFactory.createConnection();
 			psmt = conn.prepareStatement(sql.toString());
 			psmt.setString(1, userId);
+			psmt.setString(2, userPw);
 			rs = psmt.executeQuery();
 			if (rs.next()) {
-				sql = "DELETE FROM usertbl WHERE userId = ?";
+				sql = "DELETE FROM usertbl WHERE userId =?";
 				conn = connectionFactory.createConnection();
 				psmt = conn.prepareStatement(sql.toString());
 				psmt.setString(1, userId);
@@ -153,7 +152,7 @@ public class UserStoreLogic implements UserStore {
 			JdbcUtils.close(rs, psmt, conn);
 		}
 
-		System.out.println("store e namedelete " + userId);
+		System.out.println("store e namedelete " + userPw);
 	}
 
 	@Override

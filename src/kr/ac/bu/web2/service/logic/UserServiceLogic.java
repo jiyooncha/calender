@@ -51,8 +51,8 @@ public class UserServiceLogic implements UserService {
 	}
 
 	@Override
-	public void delete(String userId) {
-		userStore.delete(userId);
+	public void delete(String userPw, String userId) {
+		userStore.delete(userPw, userId);
 	}
 
 
